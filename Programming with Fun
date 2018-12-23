@@ -1,0 +1,56 @@
+Programming with Fun
+This program is written in C#.NET.  In this program the timer has been set for three hours. Once the program starts, it decreases by one second repeatedly until the program ends.  The program contains two type of controls, three Labels and one Timer.  Labels are used for displaying hour, minutes and seconds. The program runs on Timer’s Tick event. Here the Timer’s property ‘Interval’ has been set to 1000 milliseconds means one second and ‘Enabled’ property is set to ‘True’.  Here Timer’s Tick event is fired on each interval of one second and program runs.
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace ReverseTimer
+{
+    public partial class Form1 : Form
+    {
+        int hour = 0; int minute = 0; int second = 0;
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (second < 1)
+            {
+                second = 59;
+
+                if (minute == 0)
+                {
+                    minute = 59;
+
+                    if (hour == 0)
+                    {
+                        hour = 3;
+                    }
+                }
+                else
+                {
+                    minute -= 1;
+                    if (minute == 0)
+                    {
+                        hour -= 1;
+                    }
+                }
+            }
+            else
+            {
+                second -= 1;
+            }
+            lblHour.Text = hour.ToString("00") + ":";
+            lblMinute.Text = minute.ToString("00") + ":";
+            lblSecond.Text = second.ToString("00");
+            }
+        }
+}
